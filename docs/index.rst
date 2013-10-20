@@ -27,7 +27,10 @@ Setup
 
 - Add 'django_markdown' to INSTALLED_APPS ::
 
-    INSTALLED_APPS += ( 'django_markdown', )
+    INSTALLED_APPS += (
+    'django.contrib.markup',
+    'django_markdown',
+    )
 
 
 - Add django_markdown urls to base urls ::
@@ -58,6 +61,12 @@ Use django_markdown
     admin.autodiscover()
     flatpages.register()
     urlpatterns += [ url(r'^admin/', include(admin.site.urls)), ]
+
+    # in your templates
+    {% load markup %}
+    ...
+    {{ flatpage.title }}
+    {{ flatpage.content|markdown }}
 
 #) JavaScript API: ::
 
